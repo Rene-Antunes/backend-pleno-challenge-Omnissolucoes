@@ -128,7 +128,7 @@ API utiliza a biblioteca jsonwebtoken como forma de autenticação/autorização
 
 ## Solicitando tokens de acesso [/login]
 
-Para testar a API, pode usar o postman para criar um usuário e entre no sistema utilizando as credenciais informadas.  
+Para testar a API, pode-se usar o postman para criar um usuário e entrar no sistema utilizando as credenciais informadas.  
 
 Para gerar o token da API
 
