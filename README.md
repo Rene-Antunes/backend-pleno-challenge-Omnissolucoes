@@ -1,5 +1,4 @@
 # backend-pleno-challenge-Omnissolucoes
-Um simples projeto RestFull API em nodejs
 
 <h1>✅ Status do projeto</h1>
 
