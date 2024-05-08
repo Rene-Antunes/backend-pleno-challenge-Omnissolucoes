@@ -201,6 +201,8 @@ sequelize-cli db:create
 sequelize-cli db:migrate
 ```
 para criar a tabela users
+
+
 Rodando os testes use:
 ```
 npm run test 
