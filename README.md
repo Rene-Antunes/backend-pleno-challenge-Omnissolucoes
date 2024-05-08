@@ -133,7 +133,7 @@ Para testar a API, pode-se usar o postman para criar um usuário e entrar no sis
 Para gerar o token da API
 
 ### Obtendo o token
-Para obter utilize o e-mail e senha que foi cadastra na criação do usuário
+Para obter utilize o e-mail e senha que foram cadastrados na criação do usuário
 
 ### Utilizando token [POST]
 
