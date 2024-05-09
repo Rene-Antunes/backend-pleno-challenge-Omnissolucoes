@@ -186,10 +186,21 @@ npm install
 ```
 Para instalar todas as dependencias do projeto.
 
-para rodar em modo desenvolvedor use:
+para rodar aplicação use:
+```
+npm  start
+```
+ou
 ```
 npm run dev  
 ```
+
+para rodaro chat use:
+```
+npm run chat
+```
+o chat vai iniciar na porta 3001
+
 <h3>Configurando banco de dados</h3>
 
 É necessário ter MySQL instalado em sua máquina, após instalação use os comandos no terminal:
