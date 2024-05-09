@@ -7,7 +7,7 @@ exports.tokenValidator = (req, res, next) => {
   if (!token) {
     return res.status(401).json({
         ok: false,
-        message: "Token is not found",
+        message: 'Token is not found',
       })
   }
   try {
@@ -15,7 +15,7 @@ exports.tokenValidator = (req, res, next) => {
     if (!token) {
       return res.status(401).json({
           ok: false,
-          message: "Token is not found",
+          message: 'Token is not found',
         })
       
     }
@@ -24,7 +24,7 @@ exports.tokenValidator = (req, res, next) => {
     if (!payload) {
       return res.status(401).json({
         ok: false,
-        message: "Failed to get authorization data",
+        message: 'Failed to get authorization data',
       })
       
     }

@@ -5,9 +5,9 @@ const userController = require('../Controllers/userController.js')
 const authMiddleware = require("../Middleware/tokenAuth.js")
 const { wss, broadcastMessage }= require("../Controllers/websocketController.js")
 
-router.post("/login", authController.loginHandler)
+router.post('/login', authController.loginHandler)
 router.post(
-  "/register",
+  '/register',
  userController.userRegister
 )
 
@@ -17,11 +17,11 @@ router.post("/messages", (req, res)=>{
   broadcastMessage({text})
 
   res.status(201)
-  .json({ message: "Message sent successfully", text });
+  .json({ message: 'Message sent successfully', text });
 })
 
 router.get(
-  "/users",
+  '/users',
   authMiddleware.tokenValidator,
   userController.getUserList,
 )
@@ -31,7 +31,7 @@ router.get(
   userController.GetUserById,
 )
 router.put(
-  "/update-password",
+  '/update-password',
   authMiddleware.tokenValidator,
   userController.updatePassword
 )
@@ -41,7 +41,7 @@ router.put(
   userController.updateUser
 )
 router.delete(
-  "/delete",
+  '/delete',
   authMiddleware.tokenValidator,
   userController.deleteUser
 )

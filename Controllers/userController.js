@@ -1,6 +1,6 @@
-const { User } = require("../models")
-const bcrypt = require("bcrypt")
-const { Op, where } = require("sequelize")
+const { User } = require('../models')
+const bcrypt = require('bcrypt')
+const { Op, where } = require('sequelize')
 
 // Register a user
 exports.userRegister = async (req, res) => {
@@ -18,7 +18,7 @@ exports.userRegister = async (req, res) => {
     if (existingUser) {
       return res.status(400).json({
         ok: false,
-        message: "Email already exists",
+        message: 'Email already exists',
       })
     }
    
@@ -56,7 +56,7 @@ exports.userRegister = async (req, res) => {
     try {
       const users = await User.findAll({
         attributes: {
-          exclude: ["password"],
+          exclude: ['password'],
         },
       })
       return res.json({
@@ -67,7 +67,7 @@ exports.userRegister = async (req, res) => {
       console.error(error);
       return res.status(500).json({
         ok: false,
-        message: "Server error",
+        message: 'Server error',
       })
     }
   }
@@ -78,7 +78,7 @@ exports.userRegister = async (req, res) => {
         const user = await User.findByPk(req.params.id,
         {
             attributes: {
-                exclude: ["password"],
+                exclude: ['password'],
               },
         })
 
@@ -145,11 +145,11 @@ exports.updateUser = async (req, res) => {
       )
       
     } else {
-      res.status(404).json({ message: "User not found" })
+      res.status(404).json({ message: 'User not found' })
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server error" })
+    res.status(500).json({ message: 'Server error' })
   }
 
  
@@ -192,14 +192,14 @@ exports.updatePassword = async(req, res) => {
           );
       
       if (newPassword[0] === 1) {
-        return res.json({ message: `Password updated successfully`,
+        return res.json({ message: 'Password updated successfully',
 
           })
           
         }
       }catch (error) {
         console.error(error)
-        res.status(500).json({ message: "Server error" })
+        res.status(500).json({ message: 'Server error' })
   }
 }
 
@@ -217,10 +217,10 @@ exports.deleteUser = async (req, res) => {
     if (deletedUser) {
       res.status(204).json()
     } else {
-      res.status(404).json({ message: "User not found" })
+      res.status(404).json({ message: 'User not found'})
     }
   } catch (error) {
     console.error(error)
-    res.status(500).json({ message: "Server error" })
+    res.status(500).json({ message: 'Server error'})
   }
 }

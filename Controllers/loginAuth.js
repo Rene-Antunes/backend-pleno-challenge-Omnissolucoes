@@ -1,10 +1,10 @@
-const { User } = require("../models")
-const jwt = require("jsonwebtoken")
-const bcrypt = require("bcrypt")
-const { Op } = require("sequelize")
+const { User } = require('../models')
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
+const { Op } = require('sequelize')
 
 
-const secret = "jwt-secret-key"
+const secret = 'jwt-secret-key'
 
 // Used to log into the system and generate token
 exports.loginHandler = async (req, res) => {
@@ -20,21 +20,21 @@ exports.loginHandler = async (req, res) => {
     if (!user) {
       return res
         .status(401)
-        .json({ message: "Invalid email/username or password" })
+        .json({ message: 'Invalid email/username or password'})
     }
 
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
       return res
         .status(401)
-        .json({ message: "Invalid email/username or password" })
+        .json({ message: 'Invalid email/username or password'})
     }
 
     const token = jwt.sign(
       { id: user.id, username: user.username},
       secret,
       {
-        expiresIn: "1d",
+        expiresIn: '1d',
       }
     )
     return res.json({
@@ -48,7 +48,7 @@ exports.loginHandler = async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({
-      message: "Server error",
+      message: 'Server error',
     })
   }
 }
