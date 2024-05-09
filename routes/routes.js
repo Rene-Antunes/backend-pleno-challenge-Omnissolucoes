@@ -4,12 +4,14 @@ const authController = require("../Controllers/loginAuth.js")
 const userController = require('../Controllers/userController.js')
 const authMiddleware = require("../Middleware/tokenAuth.js")
 
+
 router.post('/login', authController.loginHandler)
 router.post(
   '/register',
  userController.userRegister
 )
 
+router.get('/chat', )
 router.get(
   '/users',
   authMiddleware.tokenValidator,

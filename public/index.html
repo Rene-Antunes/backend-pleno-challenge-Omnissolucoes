@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Chat</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+</head>
+<body>
+    <!-- Div com o formulário de acesso, para inserir o apelido -->
+    <div id='access_user'>
+        <form id='login'>
+            <input type='text' placeholder='Enter your nickname' name='nickname' id='nickname' />
+            <input type='submit' value='Login' />
+        </form>
+    </div>
+    <!-- Div principal onde fica o painel de mensagens e lista de usuários -->
+    <div id='chat_hall'>
+        <div id="history_messages"></div>
+        <select multiple="multiple" id='users_list'><option value=''>All Users</option></select>
+        <form id='chat'>
+            <input type='text' id='text_message' name='text_message' />
+            <input type='submit' value='Send message!' />  
+        </form>
+    </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+
+        var socket = io.connect();
+
+
+        // Ao enviar uma mensagem
+        $("form#chat").submit(function(e){
+            e.preventDefault();
+
+
+            var message = $(this).find("#text_message").val();
+            var user = $("#users_list").val(); // Usuário selecionado na lista lateral direita
+
+
+            // Evento acionado no servidor para o envio da mensagem
+            // junto com o nome do usuário selecionado da lista
+            socket.emit("send message", {msg: message, usu: user}, function(){
+                $("form#chat #text_message").val("");
+            });
+        });
+
+
+        // Resposta ao envio de mensagens do servidor
+        socket.on("update messages", function(dados){
+            var format_massage = $("<p />").text(dados.msg).addClass(dados.type);
+            $("#history_messages").append(format_massage);
+        });
+
+
+        $("form#login").submit(function(e){
+            e.preventDefault();
+
+
+            // Evento enviado quando o usuário insere um apelido
+            socket.emit("login", $(this).find("#nickname").val(), function(valido){
+                if(valido){
+                    // Caso não exista nenhum usuário com o mesmo nome, o painel principal é exibido
+                    $("#access_user").hide();
+                    $("#chat_hall").show();
+                }else{
+                    // Do contrário o campo de mensagens é limpo e é apresentado um alert
+                    $("#access_user").val("");
+                    alert("Name already in use");
+                }
+            });
+        });
+
+
+        // Quando servidor enviar uma nova lista de usuários
+        // o select é limpo e reinserida a opção Todos
+        // junto de toda a lista de usuários.
+        socket.on("update users", function(users){
+            $("#users_list").empty();
+            $("#users_list").append("<option value=''>All Users</option>");
+                $.each(users, function(index){
+                    var user_option = $("<option />").text(users[index]);
+                    $("#users_list").append(user_option);
+            });
+        });
+
+
+
+
+    </script>
+
+
+</body>
+</html>
+
+
