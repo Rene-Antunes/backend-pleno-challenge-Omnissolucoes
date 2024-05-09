@@ -194,8 +194,9 @@ ou
 ```
 npm run dev  
 ```
+<h3> A aplicação também conta com um simples chat webSocket que pode ser acessado da seguinde forma:</h3>
 
-para rodaro chat use:
+para rodar o chat use:
 ```
 npm run chat
 ```
